@@ -11,9 +11,9 @@ size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("")
 
-r = 255
-g = 255
-b = 255
+r = 209
+g = 237
+b = 242
 
 bg = pygame.image.load("blue-background.jpg")
 run = True
@@ -24,7 +24,10 @@ while run:
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
 
+    screen.fill((r, g, b))
+    screen.blit(bg, (210, 100))
 
-screen.fill((r, g, b))
-screen.blit(bg, (0, 0))
-pygame.display.update()
+    pygame.display.update()
+
+
+pygame.quit()
