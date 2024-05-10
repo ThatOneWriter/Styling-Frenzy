@@ -1,5 +1,6 @@
 import pygame
 from background import Background
+from button import Button
 
 pygame.init()
 
@@ -9,13 +10,14 @@ SCREEN_WIDTH = 1030
 
 size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode(size)
-pygame.display.set_caption("")
+pygame.display.set_caption("Styling Frenzy")
 
 r = 209
 g = 237
 b = 242
 
-bg = pygame.image.load("blue-background.jpg")
+click_button = Button("click", 210, 140)
+bg = Background(210, 120)
 run = True
 
 while run:
@@ -25,8 +27,8 @@ while run:
             run = False
 
     screen.fill((r, g, b))
-    screen.blit(bg, (210, 100))
-
+    screen.blit(click_button.image, click_button.rect)
+    screen.blit(bg.image, bg.rect)
     pygame.display.update()
 
 
