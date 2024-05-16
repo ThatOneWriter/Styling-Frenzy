@@ -4,7 +4,13 @@ from background import Background
 
 
 pygame.init()
-
+font = pygame.font.Font('Arial', 24)
+timer = pygame.time.Clock()
+message = "Ready to play?"
+t = font.render('', True, 'white')
+count = 0
+sp = 3
+done = False
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1030
 
@@ -19,7 +25,7 @@ g = 237
 b = 242
 
 
-click_button = Button("click", 180, 200)
+click_button = Button("click", 430, 470)
 
 bg = Background(210, 120)
 
@@ -27,12 +33,15 @@ bg = Background(210, 120)
 run = True
 
 while run:
+    screen.fill((r, g, b))
+    timer.tick(60)
+    if count < sp * len(message):
+        count += 1
 
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
 
-    screen.fill((r, g, b))
     screen.blit(click_button.image, click_button.rect)
     screen.blit(bg.image, bg.rect)
     pygame.display.update()
