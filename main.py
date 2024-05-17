@@ -4,12 +4,14 @@ from background import Background
 
 
 pygame.init()
-font = pygame.font.Font('Arial', 24)
+font = pygame.font.SysFont('Gochi Hand', 24)
 timer = pygame.time.Clock()
-message = "Ready to play?"
+messages = ['Ready to play?', 'Are you sure?', 'Sure sure?']
 t = font.render('', True, 'white')
+touch_message = 0
+message = messages[touch_message]
 count = 0
-sp = 3
+sp = 4
 done = False
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1030
@@ -20,9 +22,9 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Styling Frenzy")
 
 
-r = 209
-g = 237
-b = 242
+r = 103
+g = 68
+b = 59
 
 
 click_button = Button("click", 430, 470)
@@ -33,15 +35,27 @@ bg = Background(210, 120)
 run = True
 
 while run:
+
     screen.fill((r, g, b))
     timer.tick(60)
     if count < sp * len(message):
         count += 1
+    elif count >= sp * len(message):
+        done = True
 
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN and done and touch_message < len(messages):
+                touch_message += 1
+                done = False
+                message = messages[touch_message]
+                count = 0
+    pygame.display.flip()
+    snip = font.render(message[0:count//sp], True, "white")
 
+    screen.blit(snip, (400, 89))
     screen.blit(click_button.image, click_button.rect)
     screen.blit(bg.image, bg.rect)
     pygame.display.update()
