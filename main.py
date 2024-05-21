@@ -2,7 +2,6 @@ import pygame
 from button import Button
 from background import Background
 
-
 pygame.init()
 font = pygame.font.SysFont('Gochi Hand', 24)
 
@@ -52,8 +51,8 @@ while run:
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_BACKSPACE and done and touch_message < len(messages):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if done and touch_message < len(messages):
                 touch_message += 1
                 done = False
                 message = messages[touch_message]
