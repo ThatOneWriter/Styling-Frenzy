@@ -1,6 +1,7 @@
 import pygame
 from button import Button
 from background import Background
+from cursor import Cursor
 
 pygame.init()
 font = pygame.font.SysFont('Gochi Hand', 24)
@@ -33,7 +34,7 @@ b = 59
 
 
 click_button = Button("click", 430, 470)
-
+c = Cursor()
 bg = Background(210, 120)
 
 
