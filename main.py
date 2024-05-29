@@ -34,7 +34,7 @@ b = 59
 
 
 click_button = Button("click", 430, 470)
-c = Cursor()
+c = Cursor(23, 30)
 bg = Background(210, 120)
 
 
@@ -52,6 +52,9 @@ while run:
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
+
+        if event.type == pygame.MOUSEBUTTONUP:
+            move = c + 1
         if event.type == pygame.MOUSEBUTTONDOWN:
             if done and touch_message < len(messages):
                 touch_message += 1
@@ -63,6 +66,7 @@ while run:
     screen.blit(snip, (400, 89))
     screen.blit(click_button.image, click_button.rect)
     screen.blit(bg.image, bg.rect)
+    screen.blit(c.image, c.rect)
 
     pygame.display.flip()
     pygame.display.update()
