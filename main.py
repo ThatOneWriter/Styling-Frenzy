@@ -41,7 +41,8 @@ bg = Background(210, 120)
 run = True
 
 while run:
-
+    movement = pygame.mouse.get_pos()
+    print(movement)
     screen.fill((r, g, b))
     timer.tick(60)
     if count < sp * len(message):
@@ -52,22 +53,19 @@ while run:
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
-
-        if event.type == pygame.MOUSEBUTTONUP:
-            move = c + 1
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if done and touch_message < len(messages):
-                touch_message += 1
-                done = False
-                message = messages[touch_message]
-                count = 0
+            if c.rect.colliderect(click_button.rect):
+                if done and touch_message < len(messages):
+                    touch_message += 1
+                    done = False
+                    message = messages[touch_message]
+                    count = 0
     snip = font.render(message[0:count//sp], True, "white")
 
     screen.blit(snip, (400, 89))
     screen.blit(click_button.image, click_button.rect)
     screen.blit(bg.image, bg.rect)
     screen.blit(c.image, c.rect)
-
     pygame.display.flip()
     pygame.display.update()
 pygame.quit()
