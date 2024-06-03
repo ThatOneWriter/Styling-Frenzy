@@ -2,17 +2,18 @@ import pygame
 from button import Button
 from background import Background
 from cursor import Cursor
+from meat import Meat
 
 pygame.init()
 font = pygame.font.SysFont('Gochi Hand', 24)
-
+login_font = pygame.font.SysFont('Gochi Hand', 60)
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1030
 
 
 size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode(size)
-pygame.display.set_caption("Styling Frenzy")
+pygame.display.set_caption("")
 
 timer = pygame.time.Clock()
 messages = ['~Click the start button to begin~','Ready to play?',
@@ -41,8 +42,9 @@ bg = Background(210, 120)
 run = True
 
 while run:
-
     movement = pygame.mouse.get_pos()
+    begin = "Welcome to: "
+    display_begin = login_font.render(begin, True, (255, 255, 255))
 
     screen.fill((r, g, b))
     timer.tick(60)
@@ -65,6 +67,7 @@ while run:
     screen.blit(snip, (400, 89))
     screen.blit(click_button.image, click_button.rect)
     screen.blit(bg.image, bg.rect)
+    screen.blit(display_begin, (200, 45))
     screen.blit(c.image, movement)
     pygame.display.flip()
     pygame.display.update()
