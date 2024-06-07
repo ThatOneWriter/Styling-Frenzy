@@ -1,12 +1,13 @@
 import pygame
+import random
 from button import Button
 from background import Background
 from cursor import Cursor
 from meat import Meat
 
 pygame.init()
-font = pygame.font.SysFont('Gochi Hand', 24)
-login_font = pygame.font.SysFont('Gochi Hand', 60)
+font = pygame.font.SysFont('Go chi Hand', 24)
+login_font = pygame.font.SysFont('Go chi Hand', 60)
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1030
 
@@ -16,7 +17,7 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("")
 
 timer = pygame.time.Clock()
-messages = ['~Click the start button to begin~','Ready to play?',
+messages = ['~Click the start button to begin~', 'Ready to play?',
             'Are you sure?',
             'No turning back you know.',
             '.', '..', '...',
@@ -37,7 +38,7 @@ b = 59
 click_button = Button("click", 430, 470)
 c = Cursor(400, 89)
 bg = Background(210, 120)
-
+m = Meat(50, 60)
 
 run = True
 
@@ -62,6 +63,10 @@ while run:
                 done = False
                 message = messages[touch_message]
                 count = 0
+                screen.blit(m.image, m.rect)
+        if m.rect.collidepoint(movement):
+            m.move(m.x + 3, m.y + 3)
+            m = Meat(random.randint(15, 450), random.randint(24, 310))
     snip = font.render(message[0:count//sp], True, "white")
 
     screen.blit(snip, (400, 89))

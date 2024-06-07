@@ -8,10 +8,3 @@ class Cursor:
         self.y = y
         self.image = pygame.transform.scale(pygame.image.load("cursor.png"), (35, 35))
         self.image_size = self.image.get_size()
-
-
-
-
-
-
-
